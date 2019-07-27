@@ -128,5 +128,14 @@ def all_items():
 def about_us():
     return render_template("aboutus.html")
 
+@app.route('/delete_item', methods = ['POST'])
+@login_required
+def delete_item():
+    itemId = request.form['itemId']
+    conn = get_db()
+    conn.execute("DELETE FROM item where id=?", [itemId])
+    conn.commit()
+    return "Success"
+    
 if __name__ == '__main__':
     app.run()
