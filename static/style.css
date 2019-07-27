@@ -1,13 +1,13 @@
 body {
-  color: blue;
-  background-color: blanchedalmond;
+  background-color: palevioletred;
   height: 100%;
+  text-align: center;
 }
 
 /* The hero image */
 .hero-image {
   /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("photographer.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url("funbun.jpg");
 
   /* Set a specific height */
   height: 50%;
@@ -27,4 +27,24 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   color: white;
+}
+
+.item {
+  padding: 30px;
+  margin: 10px;
+  background-color: white;
+}
+
+.item-name {
+  font-size: 1.1em;
+  font-weight: 600;
+}
+
+.item-price {
+
+}
+
+#about-us {
+  padding: 5px;
+  background-color: white;
 }

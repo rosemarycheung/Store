@@ -124,5 +124,9 @@ def all_items():
     items = get_db().execute("SELECT * from item").fetchall()
     return json.dumps(items)
 
+@app.route('/aboutus')
+def about_us():
+    return render_template("aboutus.html")
+
 if __name__ == '__main__':
     app.run()

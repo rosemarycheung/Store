@@ -22,8 +22,8 @@ $( document ).ready(function() {
         $.post('/new_item', {itemName: itemName, itemPrice: itemPrice}, function(data) {
             $('#item-list').append(`
                 <div>
-                    <div>Item Name: ${itemName}</div>
-                    <div>Item Price: ${itemPrice}</div>
+                    <div class="item-name">${itemName}</div>
+                    <div class="item-price">${itemPrice}</div>
                 </div>
             `);
         });

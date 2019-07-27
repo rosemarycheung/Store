@@ -4,12 +4,14 @@ $(document).ready(function() {
 
     data = JSON.parse(data);
 
-    data.forEach(x => {
+    data.forEach((x) => {
+        console.log(x);
       $("#item-list").append(`
-                <div>
-                    <div>Item Name: ${x[1]}</div>
-                    <div>Item Price: ${x[2]}</div>
+                <div class="item">
+                    <div class="item-name">${x[1]}</div>
+                    <div class="item-price">$${x[2]}</div>
                 </div>
+                
             `);
     });
   });
