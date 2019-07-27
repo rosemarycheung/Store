@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="admin.js"></script>
+  </head>
+  <body>
+    <div>
+      {% if current_user.is_authenticated %} Hi {{ current_user.username }}! {%
+      endif %}
+    </div>
+    <div id="item-list">
+        Items:
+    </div>
+    <div>
+      <h5>Add new item:</h5>
+      <form>
+        <input name="name" placeholder="item name" id="item-name" />
+        <input price="price" placeholder="item price" id="item-price" />
+        <button id="new-item-button">Add</button>
+      </form>
+    </div>
+  </body>
+</html>
