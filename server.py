@@ -115,9 +115,10 @@ def new_item():
     name = request.form['itemName']
     price = request.form['itemPrice']
     conn = get_db()
-    conn.execute("INSERT INTO item(name, price) VALUES(?,?)", [name, price])
+    cursor = conn.cursor()
+    cursor.execute("INSERT INTO item(name, price) VALUES(?,?)", [name, price])
     conn.commit()
-    return "Success"
+    return str(cursor.lastrowid)
     
 @app.route('/all_items')
 def all_items():

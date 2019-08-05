@@ -9,9 +9,9 @@ $(document).ready(function() {
                 <div>
                     <div>Item Name: ${x[1]}</div>
                     <div>Item Price: ${x[2]}</div>
-                    <div data-itemid=${x[0]} id="del-${
+                    <button data-itemid=${x[0]} id="del-${
         x[0]
-      }" class="del-items">Delete</div>
+      }" class="del-items">Delete</button>
                 </div>
             `);
     });
@@ -21,8 +21,9 @@ $(document).ready(function() {
       console.log('clicked!');
     var itemId = $(this).data("itemid");
     console.log(itemId);
+    var context = $(this);
     $.post("/delete_item", { itemId: itemId }, function(data) {
-        $(this).parent().html("");
+        context.parent().html("");
     });
   });
 
@@ -33,10 +34,15 @@ $(document).ready(function() {
     $.post("/new_item", { itemName: itemName, itemPrice: itemPrice }, function(
       data
     ) {
+      console.log('this is data', data)
       $("#item-list").append(`
                 <div>
-                    <div class="item-name">${itemName}</div>
-                    <div class="item-price">${itemPrice}</div>
+                    <div class="item-name">Item Name: ${itemName}</div>
+                    <div class="item-price">Item Price: ${itemPrice}</div>
+                    <button data-itemid=${data} id="del-${
+                      data
+                    }" class="del-items">Delete</button>
+                              </div>
                 </div>
             `);
     });
