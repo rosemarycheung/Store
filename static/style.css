@@ -72,3 +72,11 @@ body {
 .item-image {
   max-width: 200px;
 }
+
+#item-upload {
+  text-align: center;
+}
+
+#item-upload input {
+  margin: 0 auto;
+}
