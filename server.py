@@ -114,9 +114,17 @@ def admin():
 def new_item():
     name = request.form['itemName']
     price = request.form['itemPrice']
+    print (request.files)
+    try:
+        if 'file' in request.files:
+            imageFile = request.files['file']
+            savePath = "./static/{}".format(imageFile.filename)
+            imageFile.save(savePath)
+    except Exception as e:
+        print(e)
     conn = get_db()
     cursor = conn.cursor()
-    cursor.execute("INSERT INTO item(name, price) VALUES(?,?)", [name, price])
+    cursor.execute("INSERT INTO item(name, price, photo_url) VALUES(?,?,?)", [name, price, imageFile.filename])
     conn.commit()
     return str(cursor.lastrowid)
     

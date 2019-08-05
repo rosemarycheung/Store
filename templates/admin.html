@@ -1,9 +1,17 @@
 <html>
   <head>
+    <title>Rosemary Cheung</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.css"
+    />
+    <link rel="stylesheet" type="text/css" href="style.css" />
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="admin.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans&display=swap" rel="stylesheet">
   </head>
-  <body>
+  <body id="admin-page">
     <div>
       {% if current_user.is_authenticated %} Hi {{ current_user.username }}! {%
       endif %}
@@ -13,9 +21,10 @@
     </div>
     <div>
       <h5>Add new item:</h5>
-      <form>
+      <form id='new-item' enctype='multipart/forn-data'>
         <input name="name" placeholder="item name" id="item-name" />
         <input price="price" placeholder="item price" id="item-price" />
+        <input name="file" type="file">
         <button id="new-item-button">Add</button>
       </form>
     </div>

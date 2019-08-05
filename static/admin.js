@@ -9,6 +9,7 @@ $(document).ready(function() {
                 <div>
                     <div>Item Name: ${x[1]}</div>
                     <div>Item Price: ${x[2]}</div>
+                    <img src="${x[3]}" style="max-height: 100px; max-width: 100px;"/>
                     <button data-itemid=${x[0]} id="del-${
         x[0]
       }" class="del-items">Delete</button>
@@ -18,12 +19,12 @@ $(document).ready(function() {
   });
 
   $(document).on("click", ".del-items", function(e) {
-      console.log('clicked!');
+    console.log("clicked!");
     var itemId = $(this).data("itemid");
     console.log(itemId);
     var context = $(this);
     $.post("/delete_item", { itemId: itemId }, function(data) {
-        context.parent().html("");
+      context.parent().html("");
     });
   });
 
@@ -31,20 +32,27 @@ $(document).ready(function() {
     e.preventDefault();
     var itemName = $("#item-name").val();
     var itemPrice = $("#item-price").val();
-    $.post("/new_item", { itemName: itemName, itemPrice: itemPrice }, function(
-      data
-    ) {
-      console.log('this is data', data)
-      $("#item-list").append(`
-                <div>
-                    <div class="item-name">Item Name: ${itemName}</div>
-                    <div class="item-price">Item Price: ${itemPrice}</div>
-                    <button data-itemid=${data} id="del-${
-                      data
-                    }" class="del-items">Delete</button>
-                              </div>
-                </div>
-            `);
+    var form_data = new FormData($("#new-item")[0]);
+    form_data.append("itemName", itemName);
+    form_data.append("itemPrice", itemPrice);
+    console.log(form_data);
+    $.ajax({
+      type: "POST",
+      url: "/new_item",
+      data: form_data,
+      contentType: false,
+      cache: false,
+      processData: false,
+      success: function(data) {
+        $("#item-list").append(`
+          <div>
+              <div class="item-name">Item Name: ${itemName}</div>
+              <div class="item-price">Item Price: ${itemPrice}</div>
+              <button data-itemid=${data} id="del-${data}" class="del-items">Delete</button>
+                        </div>
+          </div>
+      `);
+      }
     });
   });
 });
